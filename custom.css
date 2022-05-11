@@ -1,0 +1,28 @@
+body {
+    background-color: #fff;
+}
+
+.site-header {
+    background-color: #cccc;
+}
+
+.example-sidebar {
+    color: #fff;
+    background-color: lightseagreen;
+}
+
+
+/*
+CUSTOM TEMPLATE
+*/
+.page-id-14 .site-header {
+    background-color: lightgreen;
+}
+
+.custom-template-content {
+    background-color: lightblue;
+}
+
+.custom-sidebar {
+    background-color: lightcoral;
+}
