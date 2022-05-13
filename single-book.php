@@ -15,14 +15,24 @@ get_header();
     );
 
     $loop = new WP_Query($args);
-    while ( $loop->have_posts() ) {
-        $loop->the_post();
-        ?>
-        <div class="entry-content">
-            <?php the_title(); ?>
-            <?php the_content(); ?>
-        </div>
-        <?php
+    if( $loop->have_posts() ) {
+        while ( $loop->have_posts() ) {
+            $loop->the_post();
+            ?>
+
+            <div class="entry-content">
+                <?php
+                    the_title();
+                    the_content();
+                ?>
+            </div>
+
+            <div>Autore: <?= get_field('autore'); ?></div>
+            <div>Titolo: <?= get_field('titolo'); ?></div>
+            <div>Editore: <?= get_field('editore'); ?></div>
+
+            <?php
+        }
     }
     ?>
     
