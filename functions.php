@@ -65,3 +65,47 @@ function perf_register_menu() //da back-office se non seleziono niente in 'Posiz
     );
 }
 add_action( 'after_setup_theme', 'perf_register_menu' );
+
+/**
+ * Register custom post type.
+ */
+function perf_register_post_type() {
+    
+    $labels = array(
+        'name' => __( 'Libri', 'performize' ),
+        'singular_name' => __( 'Libro', 'performize' ),
+        'add_new' => __( 'Nuovo Libro', 'performize' ),
+        'add_new_item' => __( 'Aggiungi Nuovo Libro', 'performize' ),
+        'edit_item' => __( 'Modifica Libro', 'performize' ),
+        'new_item' => __( 'Nuovo Libro', 'performize' ),
+        'all_items' => __( 'Tutti i Libri', 'performize' ),
+        'view_item' => __( 'Vedi Libro', 'performize' ),
+        'search_items' => __( 'Cerca Libro', 'performize' ),
+        'not_found' =>  __( 'Nessun Libro Trovato', 'performize' ),
+        'not_found_in_trash' => __( 'Nessun Libro Trovato nel Cestino', 'performize' ),
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'description' => 'Custom post type per i libri',
+        'has_archive' => true,
+        'public' => true,
+        'menu_position' => 5,
+        'hierarchical' => true,
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'custom-fields',
+            'thumbnail',
+            'page-attributes',
+        ),
+        'capability_type' => 'post',
+        'taxonomies' => ['category'],
+        'rewrite'   => array( 'slug' => 'book' ),
+        'show_in_rest' => true
+    );
+
+    register_post_type( 'book', $args );
+}
+add_action( 'init', 'perf_register_post_type' );
